@@ -1,5 +1,16 @@
+version: "3"
 services:
   php:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
+
+build:
+    context: .
+    dockerfile: docker/php/Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - .:/var/www/html
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/laravel/public
