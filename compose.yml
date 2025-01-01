@@ -4,10 +4,6 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
-
-build:
-    context: .
-    dockerfile: docker/php/Dockerfile
     ports:
       - 8000:80
     volumes:
