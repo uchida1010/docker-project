@@ -11,8 +11,7 @@ services:
       APACHE_DOCUMENT_ROOT: /var/www/html/laravel/public
 
   db:
-    platform: linux/x86_64
-    image: mysql:5.7
+    image: mysql:8.4
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: laraveldb
@@ -20,8 +19,13 @@ services:
       MYSQL_PASSWORD: secret
       TZ: 'Asia/Tokyo' 
     volumes:
-      - ./docker/db/data:/var/lib/mysql
-      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./docker/db/sql:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+      - my.cnf:/etc/mysql/conf.d/my.cnf
+      - sql:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
+
+volumes: 
+  db_data:
+  my.cnf:
+  sql:
